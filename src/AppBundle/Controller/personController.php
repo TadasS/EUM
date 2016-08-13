@@ -22,14 +22,21 @@ class personController extends Controller
      * @Route("/", name="person_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $persons = $em->getRepository('AppBundle:person')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $persons,
+            $request->query->getInt('page', 1),
+            15
+        );
+        $pagination->setTemplate('twitter_bootstrap_v3_pagination.html.twig');
 
         return $this->render('person/index.html.twig', array(
-            'persons' => $persons,
+            'pagination' => $pagination
         ));
     }
 

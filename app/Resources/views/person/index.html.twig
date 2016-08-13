@@ -16,7 +16,7 @@
         </thead>
 
         <tbody>
-            {% for person in persons %}
+            {% for person in pagination  %}
                 <tr>
                     <td><a href="{{ path('person_show', { 'id': person.id }) }}">{{ person.id }}</a></td>
                     <td>{{ person.firstName }}</td>
@@ -40,6 +40,10 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
     <a class="btn btn-default" href="{{ path('person_new') }}">{{ 'creat_new'|trans }}</a>
 {% endblock %}

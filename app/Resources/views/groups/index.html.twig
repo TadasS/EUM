@@ -15,7 +15,7 @@
         </thead>
 
         <tbody>
-        {% for group in groups %}
+        {% for group in pagination %}
             <tr>
                 <td><a href="{{ path('groups_show', { 'id': group.id }) }}">{{ group.id }}</a></td>
                 <td>{{ group.name }}</td>
@@ -38,6 +38,10 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
     <a class="btn btn-default" href="{{ path('groups_new') }}">{{ 'groups_new'|trans }}</a>
 {% endblock %}

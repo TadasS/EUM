@@ -22,14 +22,21 @@ class groupsController extends Controller
      * @Route("/", name="groups_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $groups = $em->getRepository('AppBundle:groups')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $groups,
+            $request->query->getInt('page', 1),
+            15
+        );
+        $pagination->setTemplate('twitter_bootstrap_v3_pagination.html.twig');
 
         return $this->render('groups/index.html.twig', array(
-            'groups' => $groups,
+            'pagination' => $pagination
         ));
     }
 
