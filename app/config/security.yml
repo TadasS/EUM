@@ -8,10 +8,9 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     access_control:
+        # this will allow only logged in user (admin) to see the site.
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/, role: ROLE_USER }
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -28,7 +27,7 @@ security:
             security: false
 
         main:
-            anonymous: ~
+            anonymous: true
             # activate different ways to authenticate
 
             # http_basic: ~

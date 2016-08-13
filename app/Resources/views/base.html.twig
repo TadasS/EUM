@@ -2,12 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}EPIC: user management system{% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         {% block stylesheets %}{% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            {% block javascripts %}{% endblock %}
+        </div>
     </body>
 </html>
