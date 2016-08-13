@@ -136,4 +136,13 @@ class person
     {
         return $this->groups;
     }
+
+    /**
+     * @return string
+     * This will save me from erros
+     * when trying to print out list
+     */
+    public function __toString() {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }

@@ -13,6 +13,24 @@
 
     <body>
         <div class="container">
+            {% if app.request.attributes.get('_route') != 'fos_user_security_login' %}
+                <div class="masthead">
+                    <h3 class="text-muted">{{ 'project_title'|trans }}</h3>
+
+                    <nav>
+                        <ul class="nav nav-justified">
+                            <li{% if app.request.attributes.get('_route') starts with 'person' %} class="active"{% endif %}>
+                                <a href="{{ path('person_index') }}">{{ 'persons'|trans }}</a>
+                            </li>
+
+                            <li{% if app.request.attributes.get('_route') starts with 'groups' %} class="active"{% endif %}>
+                                <a href="{{ path('groups_index') }}">{{ 'groups'|trans }}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            {% endif %}
+
             {% block body %}{% endblock %}
 
             <script src="{{ asset('js/jquery.min.js') }}"></script>

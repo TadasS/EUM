@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="sub-header">{{ 'groups'|trans }}</h1>
+
+    <a class="btn btn-default" href="{{ path('groups_new') }}">{{ 'groups_new'|trans }}</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ 'id'|trans }}</th>
+            <th>{{ 'groups_name'|trans }}</th>
+            <th>{{ 'actions'|trans }}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for group in groups %}
+            <tr>
+                <td><a href="{{ path('groups_show', { 'id': group.id }) }}">{{ group.id }}</a></td>
+                <td>{{ group.name }}</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'action'|trans }} <span class="caret"></span></button>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('groups_show', { 'id': group.id }) }}">{{ 'show'|trans }}</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path('groups_edit', { 'id': group.id }) }}">{{ 'edit'|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-default" href="{{ path('groups_new') }}">{{ 'groups_new'|trans }}</a>
+{% endblock %}

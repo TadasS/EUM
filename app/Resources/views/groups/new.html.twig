@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'groups_creation'|trans }}</h1>
+
+    <div class="row">
+        <div class="col-sm-6 asdas">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input class="btn btn-primary pull-right" type="submit" value="{{ 'create'|trans }}" />
+            {{ form_end(form) }}
+
+            <a class="btn btn-default" href="{{ path('groups_index') }}">{{ 'back_to_list'|trans }}</a>
+        </div>
+    </div>
+{% endblock %}

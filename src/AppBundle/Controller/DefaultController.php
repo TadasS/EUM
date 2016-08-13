@@ -13,14 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+
         return $this->redirectToRoute('person_index');
-
-        $persons = $this->getDoctrine()
-            ->getRepository('AppBundle:person')
-            ->findAll();
-
-        return $this->render('users_list.html.twig', array(
-            'persons' => $persons
-        ));
     }
 }
