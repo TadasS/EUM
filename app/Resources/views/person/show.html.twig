@@ -1,36 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>person</h1>
+    <h1>{{ person.firstName ~ ' ' ~ person.lastName }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ person.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ person.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ person.lastName }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-sm-6 asdas">
+            <div class="form-group">
+                <label>{{ 'id'|trans }}</label>
+                <input type="text" class="form-control" disabled="disabled" value="{{ person.id }}" />
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('person_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('person_edit', { 'id': person.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <div class="form-group">
+                <label>{{ 'first_name'|trans }}</label>
+                <input type="text" class="form-control" disabled="disabled" value="{{ person.firstName }}" />
+            </div>
+
+            <div class="form-group">
+                <label>{{ 'last_name'|trans }}</label>
+                <input type="text" class="form-control" disabled="disabled" value="{{ person.lastName }}" />
+            </div>
+
+            <a class="btn btn-default" href="{{ path('person_index') }}">{{ 'back_to_list'|trans }}</a>
+            <a class="btn btn-primary pull-right" href="{{ path('person_edit', { 'id': person.id }) }}">{{ 'edit'|trans }}</a>
+
+            {{ form_start(delete_form, {'attr': {'class' : 'inline'}}) }}
+                <button class="btn btn-danger" type="submit">{{ 'delete'|trans }}</button>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
 {% endblock %}

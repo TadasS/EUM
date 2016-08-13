@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>person creation</h1>
+    <h1>{{ 'person_creation'|trans }}</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-sm-6 asdas">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input class="btn btn-primary pull-right" type="submit" value="{{ 'create'|trans }}" />
+            {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('person_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <a class="btn btn-default" href="{{ path('person_index') }}">{{ 'back_to_list'|trans }}</a>
+        </div>
+    </div>
 {% endblock %}
