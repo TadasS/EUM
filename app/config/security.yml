@@ -8,40 +8,37 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     access_control:
-        # this will allow only logged in user (admin) to see the site.
+        - { path: ^/person, role: ROLE_USER }
+        - { path: ^/groups, role: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, role: ROLE_USER }
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
-
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        # This will enable API wsse security.
+        # Security will use FOSUserBundle user account to validate.
+        # There is a problem with password hash,
+        # Becouse FOSUserBundle uses hash, we will need to give
+        # that hash for person who will want to use API.
+        # TODO: reanable
+        #wsse_secured:
+            #pattern:   ^/api/.*
+            #stateless: true
+            #wsse:      true
+
         main:
             anonymous: true
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
 
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                # if you are using Symfony < 2.8, use the following config instead:
-                # csrf_provider: form.csrf_provider
 
             logout:       true
             anonymous:    true

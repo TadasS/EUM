@@ -2,5 +2,7 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+# Wont include all FOSUserBundle routes,
+# becouse we need only login page.
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
